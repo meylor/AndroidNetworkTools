@@ -70,13 +70,18 @@ public class SubnetDevices {
         // Get addresses from ARP Info first as they are likely to be pingable
         subnetDevice.addresses.addAll(ARPInfo.getAllIPAddressesInARPCache());
 
+
+        public String ips = "";
         // Add all missing addresses in subnet
         String segment = ipAddress.substring(0, ipAddress.lastIndexOf(".") + 1);
         for (int j = 0; j < 255; j++) {
             if (!subnetDevice.addresses.contains(segment + j)) {
                 subnetDevice.addresses.add(segment + j);
+                ips = ips + " " + (segment + j) + ",";
             }
         }
+
+        Log.v("MEYLOR: list of all subnet ips to be scanned" + ips);
 
         return subnetDevice;
 
