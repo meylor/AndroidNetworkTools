@@ -37,7 +37,7 @@ public class SubnetDevices {
     /**
      * Find devices on the subnet working from the local device ip address
      */
-    public static SubnetDevices fromLocalAddress(final int networkInterface) {
+    public static SubnetDevices fromLocalAddress(int networkInterface) {
         InetAddress ipv4 = IPTools.getLocalIPv4Address(networkInterface);
 
         if (ipv4 == null){
