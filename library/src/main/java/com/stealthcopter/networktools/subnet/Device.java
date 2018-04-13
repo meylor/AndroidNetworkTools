@@ -25,7 +25,6 @@ public class Device {
                 '}';
     }
 
-    @Overrdie
     public String toJSON() {
       return "{" +
         "ip: " +  ip + "," +
