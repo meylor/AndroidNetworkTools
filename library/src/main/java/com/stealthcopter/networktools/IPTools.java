@@ -60,7 +60,7 @@ public class IPTools {
     @Nullable
     public static InetAddress getLocalIPv4Address() {
         ArrayList<InetAddress> localAddresses = getLocalIPv4Addresses();
-        return localAddresses.size() > 0 ? localAddresses.get(0) : null;
+        return localAddresses.size() > 0 ? localAddresses.get(1) : null;
     }
 
     /**
