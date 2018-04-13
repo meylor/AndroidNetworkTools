@@ -58,9 +58,9 @@ public class IPTools {
      * @return The first local IPv4 address, or null
      */
     @Nullable
-    public static InetAddress getLocalIPv4Address() {
+    public static InetAddress getLocalIPv4Address(final int networkInterface) {
         ArrayList<InetAddress> localAddresses = getLocalIPv4Addresses();
-        return localAddresses.size() > 0 ? localAddresses.get(1) : null;
+        return localAddresses.size() > 0 ? localAddresses.get(networkInterface) : null;
     }
 
     /**
