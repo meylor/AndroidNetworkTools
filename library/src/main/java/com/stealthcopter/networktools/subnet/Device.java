@@ -24,5 +24,14 @@ public class Device {
                 ", time=" + time +
                 '}';
     }
-}
 
+    @Overrdie
+    public String toJSON() {
+      return "{" +
+        "ip: " +  ip + "," +
+        "mac: " + mac + "," +
+        "hostname: " + hostname +
+      "}";
+
+    }
+}
