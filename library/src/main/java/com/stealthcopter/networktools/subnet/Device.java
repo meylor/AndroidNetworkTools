@@ -28,9 +28,10 @@ public class Device {
     }
 
     public HashMap toMap() {
-       deviceMap.put("ip", "" + ip);
-       deviceMap.put("hostname", "" + hostname);
-       deviceMap.put("mac", "" + mac);
+       deviceMap.put("ip", ip);
+       deviceMap.put("hostname", hostname);
+       deviceMap.put("mac", mac);
        return deviceMap;
     }
+
 }
