@@ -1,6 +1,8 @@
 package com.stealthcopter.networktools.subnet;
 
 import java.net.InetAddress;
+import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.bridge.WritableNativeMap;
 
 public class Device {
     public String ip = "";
@@ -26,11 +28,19 @@ public class Device {
     }
 
     public String toJSON() {
-      return "{" +
-        "ip: " +  ip + "," +
-        "mac: " + mac + "," +
-        "hostname: " + hostname +
-      "}";
-
+      return '{' +
+        'ip: ' +  ip + ',' +
+        'mac: ' + mac + ',' +
+        'hostname: ' + hostname +
+      '}';
     }
+
+     public WritableMap toMap() {
+       private WritableMap deviceMap = WritableNativeMap();
+       deviceMap.putString("ip", ip);
+       deviceMap.putString("hostname", hostname);
+       deviceMap.putString("mac", mac);
+       return deviceMap;
+     }
+
 }
