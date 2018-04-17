@@ -25,6 +25,8 @@ public class SubnetDevices {
     private OnSubnetDeviceFound listener;
     private int timeOutMillis = 2500;
 
+    private boolean cancelled = false;
+
     // This class is not to be instantiated
     private SubnetDevices() {
     }
@@ -161,6 +163,13 @@ public class SubnetDevices {
         listener.onDeviceFound(device);
     }
 
+    /**
+     * Cancel a running subnet scan
+     */
+    public void cancel() {
+        this.cancelled = true;
+    }
+
     public class SubnetDeviceFinderRunnable implements Runnable {
         private final String address;
 
@@ -170,6 +179,7 @@ public class SubnetDevices {
 
         @Override
         public void run() {
+            if (cancelled) return;
             try {
                 InetAddress ia = InetAddress.getByName(address);
                 PingResult pingResult = Ping.onAddress(ia).setTimeOutMillis(timeOutMillis).doPing();
