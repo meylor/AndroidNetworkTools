@@ -43,7 +43,7 @@ public class PingNative {
             address = host.getHostName();
         }
 
-        Process proc = runtime.exec(pingCommand + " -c 1 -w " + timeoutSeconds + " " + address);
+        Process proc = runtime.exec(pingCommand + " -c 2 -w " + timeoutSeconds + " " + address);
         proc.waitFor();
         int exit = proc.exitValue();
         String pingError;

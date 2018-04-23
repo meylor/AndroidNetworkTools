@@ -1,11 +1,13 @@
 package com.stealthcopter.networktools.subnet;
 
 import java.net.InetAddress;
+import java.util.HashMap;
 
 public class Device {
     public String ip = "";
     public String hostname = "";
     public String mac = "";
+    public HashMap deviceMap = new HashMap();
 
 
     public float time = 0;
@@ -24,5 +26,12 @@ public class Device {
                 ", time=" + time +
                 '}';
     }
-}
 
+    public HashMap toMap() {
+       deviceMap.put("ipAddress", ip);
+       deviceMap.put("hostname", hostname);
+       deviceMap.put("macAddress", mac);
+       return deviceMap;
+    }
+
+}

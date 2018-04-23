@@ -1,6 +1,7 @@
 package com.stealthcopter.networktools;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.stealthcopter.networktools.ping.PingResult;
 import com.stealthcopter.networktools.subnet.Device;
@@ -36,8 +37,8 @@ public class SubnetDevices {
     /**
      * Find devices on the subnet working from the local device ip address
      */
-    public static SubnetDevices fromLocalAddress() {
-        InetAddress ipv4 = IPTools.getLocalIPv4Address();
+    public static SubnetDevices fromLocalAddress(int networkInterface) {
+        InetAddress ipv4 = IPTools.getLocalIPv4Address(networkInterface);
 
         if (ipv4 == null){
             throw new IllegalAccessError("Could not access local ip address");
@@ -69,6 +70,7 @@ public class SubnetDevices {
 
         // Get addresses from ARP Info first as they are likely to be pingable
         subnetDevice.addresses.addAll(ARPInfo.getAllIPAddressesInARPCache());
+
 
         // Add all missing addresses in subnet
         String segment = ipAddress.substring(0, ipAddress.lastIndexOf(".") + 1);

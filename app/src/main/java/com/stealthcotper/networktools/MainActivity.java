@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         resultText = (TextView) findViewById(R.id.resultText);
         editIpAddress = (EditText) findViewById(R.id.editIpAddress);
 
-        InetAddress ipAddress = IPTools.getLocalIPv4Address();
+        InetAddress ipAddress = IPTools.getLocalIPv4Address(0);
         if (ipAddress != null){
             editIpAddress.setText(ipAddress.getHostAddress());
         }
@@ -221,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
 
         final long startTimeMillis = System.currentTimeMillis();
 
-        SubnetDevices.fromLocalAddress().findDevices(new SubnetDevices.OnSubnetDeviceFound() {
+        SubnetDevices.fromLocalAddress(0).findDevices(new SubnetDevices.OnSubnetDeviceFound() {
             @Override
             public void onDeviceFound(Device device) {
                 appendResultsText("Device: " + device.ip+" "+ device.hostname);
