@@ -25,8 +25,6 @@ public class SubnetDevices {
     private OnSubnetDeviceFound listener;
     private int timeOutMillis = 2500;
 
-    private boolean cancelled = false;
-
     // This class is not to be instantiated
     private SubnetDevices() {
     }
@@ -74,17 +72,13 @@ public class SubnetDevices {
         subnetDevice.addresses.addAll(ARPInfo.getAllIPAddressesInARPCache());
 
 
-        String ips = "";
         // Add all missing addresses in subnet
         String segment = ipAddress.substring(0, ipAddress.lastIndexOf(".") + 1);
         for (int j = 0; j < 255; j++) {
             if (!subnetDevice.addresses.contains(segment + j)) {
                 subnetDevice.addresses.add(segment + j);
-                ips = ips + " " + (segment + j) + ",";
             }
         }
-
-        Log.v("MEYLOR", "list of all subnet ips to be scanned" + ips);
 
         return subnetDevice;
 
@@ -163,13 +157,6 @@ public class SubnetDevices {
         listener.onDeviceFound(device);
     }
 
-    /**
-     * Cancel a running subnet scan
-     */
-    public void cancel() {
-        this.cancelled = true;
-    }
-
     public class SubnetDeviceFinderRunnable implements Runnable {
         private final String address;
 
@@ -179,7 +166,6 @@ public class SubnetDevices {
 
         @Override
         public void run() {
-            if (cancelled) return;
             try {
                 InetAddress ia = InetAddress.getByName(address);
                 PingResult pingResult = Ping.onAddress(ia).setTimeOutMillis(timeOutMillis).doPing();

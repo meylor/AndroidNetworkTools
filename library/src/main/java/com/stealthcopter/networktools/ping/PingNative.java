@@ -98,7 +98,6 @@ public class PingNative {
      * @param s
      */
     public static PingResult getPingStats(PingResult pingResult, String s) {
-        Log.v("AndroidNetworkTools", "MEYLOR: jitpack.io rebuild is actually working");
         Log.v("AndroidNetworkTools", "Ping String: " + s);
         String pingError;
         if (s.contains("0% packet loss")) {
