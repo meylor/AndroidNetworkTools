@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.lang.NullPointerException;
 
 /**
  * Created by mat on 09/12/15.
@@ -75,6 +76,10 @@ public class PingTools {
         } catch (IOException e) {
             pingResult.isReachable=false;
             pingResult.error="IOException: "+e.getMessage();
+        }
+        catch (NullPointerException e) {
+          pingResult.isReachable=false;
+          pingResult.error="NullPointerException: "+e.getMessage();
         }
         return pingResult;
     }
